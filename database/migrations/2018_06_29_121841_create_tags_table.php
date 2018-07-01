@@ -19,7 +19,7 @@ class CreateTagsTable extends Migration
             $table->timestamps();
         });
 
-         Schema::create('tags_translations', function (Blueprint $table) {
+         Schema::create('tag_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tag_id')->unsigned();
             $table->string('locale')->index();

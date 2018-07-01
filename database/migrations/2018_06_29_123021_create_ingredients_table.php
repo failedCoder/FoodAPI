@@ -19,7 +19,7 @@ class CreateIngredientsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('ingredients_translations', function (Blueprint $table) {
+        Schema::create('ingredient_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ingredient_id')->unsigned();
             $table->string('locale')->index();
