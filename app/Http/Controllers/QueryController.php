@@ -12,7 +12,8 @@ class QueryController extends Controller
 {
     public function index(QueryRequest $request)
     {
-   
+    	app()->setLocale($request->query('lang'));
+   		
     	return 'test';
     }
 }
