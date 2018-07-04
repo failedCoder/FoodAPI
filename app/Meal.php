@@ -53,8 +53,6 @@ class Meal extends Model
             }    
         }
 
-       
-
        return $status;
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Resources\MealCollection;
 use App\Http\Requests\QueryRequest;
 use App\Language;
 use App\Meal;
@@ -98,6 +98,7 @@ class QueryController extends Controller
 
     	}
    		
-    	return $query->paginate($per_page);
+    	
+    	return new MealCollection($query->paginate($per_page));
     }
 }
