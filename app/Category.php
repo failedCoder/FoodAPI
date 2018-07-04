@@ -12,6 +12,8 @@ class Category extends Model
 
     protected $fillable = ['slug'];
 
+    protected $hidden = ['created_at','updated_at','deleted_at','translations'];
+
     public function meals()
     {
     	return $this->hasMany('App\Meal');

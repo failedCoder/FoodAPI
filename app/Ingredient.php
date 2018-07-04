@@ -12,6 +12,8 @@ class Ingredient extends Model
 
     protected $fillable = ['slug'];
 
+    protected $hidden = ['created_at','updated_at','deleted_at','translations','pivot'];
+
     public function meals()
     {
     	return $this->belongsToMany('App\Meal');

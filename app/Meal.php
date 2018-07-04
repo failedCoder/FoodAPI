@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Meal extends Model
 {
     use SoftDeletes;
@@ -14,6 +15,11 @@ class Meal extends Model
 
     public $translatedAttributes = ['title','description'];
 
+    protected $hidden = ['created_at','updated_at','deleted_at','translations'];
+
+    protected $appends = ['status'];
+
+ 
     public function category()
     {
     	return $this->belongsTo('App\Category');
@@ -27,6 +33,29 @@ class Meal extends Model
     public function ingredients()
     {
         return $this->belongsToMany('App\Ingredient');
+    }
+
+    public function getStatusAttribute()
+    {
+
+        $status = 'created';
+
+        if (request('diff_time')) {
+
+            $diffDate = new \DateTime();
+            $diffDate->setTimestamp(request('diff_time'));
+
+            if ($this->updated_at > $diffDate) {
+                $status = 'modified';
+            }
+            if ($this->deleted_at > $diffDate) {
+                    $status = 'deleted';
+            }    
+        }
+
+       
+
+       return $status;
     }
 
 }

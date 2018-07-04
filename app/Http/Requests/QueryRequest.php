@@ -27,7 +27,7 @@ class QueryRequest extends FormRequest
     {
         return [
             'lang' => 'required|alpha|between:2,3',
-            'per_page' => 'sometimes|integer|between:1,3',
+            'per_page' => 'sometimes|integer|digits_between:1,3',
             'page' => 'sometimes|integer',
             'category' => 'sometimes|between:1,5',
             'tags' => 'sometimes|filled',
