@@ -26,7 +26,7 @@ This api is for fetching meals from a database with url queries.
   </ul>
   </li>
   </li>
-   <li><strong>diff_time</strong> (optional):timestamp,when this parametar is passed,all of meals are returned,even deleted ones,and their status is set to created,modified or deleted depending on whether such action were taken or them after the timestamp provided</li>
+   <li><strong>diff_time</strong> (optional):timestamp,when this parametar is passed,all of meals are returned,even deleted ones,and their status is set to created,modified or deleted depending on whether such actions were taken on them after the timestamp provided</li>
 </ul>
 
 ## Other features:
