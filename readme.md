@@ -9,9 +9,9 @@ This api is for fetching meals from a database with url queries.
   <li><strong>page</strong> (optional): selects the page of paginated response</li>
   <li><strong>category</strong> (optional): filters meal based on their category id,options are:
     <ul>
-    <li>null->returns all meals that don't have a defined category</li>
-    <li>!null->returns all meals that have a defined category</li>
-    <li>integer(example:2)->returns all meals that have category with an id of 2</li>
+    <li>null: returns all meals that don't have a defined category</li>
+    <li>!null: returns all meals that have a defined category</li>
+    <li>integer(example:2): returns all meals that have category with an id of 2</li>
     </ul>
   </li>
   <li><strong>tags</strong> (optional): returns meals that have all of the tags in this parametar,for example
