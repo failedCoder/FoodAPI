@@ -1,62 +1,168 @@
-## Work in progress...
+## MealAPI
 
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+This api is for fetching meals from a database with url queries.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## List of accepted parameters
+<ul>
+  <li><strong>lang</strong>(required):models are multilingual so this param is required to fetch specific translations</li>
+  <li><strong>per_page</strong>(optional):paginates the response</li>
+  <li><strong>page</strong>(optional):selects the page of paginated response</li>
+  <li><strong>category</strong>(optional):filters meal based on their category,options are:
+    <ul>
+    <li>null->returns all meals that don't have a defined category</li>
+    <li>!null->returns all meals that have a defined category</li>
+    <li>integer(example:2)->returns all meals that have category with an id of 2</li>
+    </ul>
+  </li>
+  <li><strong>tags</strong> (optional): returns meals that have all of the tags in this parametar,for example
+  <ul>
+    <li>tags=1,2 will return all meals that have tags with the id of 1 AND id of 2</li>
+  </ul>
+   <li><strong>with</strong> (optional): list of key-words which specify the extra information we want to return about meals,available key-words:
+  <ul>
+    <li>category: details about meal category are included in the response</li>
+    <li>tags: details about all of the tags that a meal has are included in the response</li>
+    <li>ingredients: details about all of the ingredients that a meal has are included in the response</li>
+  </ul>
+  </li>
+  </li>
+   <li><strong>diff_time</strong> (optional):timestamp,when this parametar is passed,all of meals are returned,even deleted ones,and their status is set to created,modified or deleted depending on whether such action were taken or them after the timestamp provided</li>
+</ul>
 
-## About Laravel
+## Other features:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+<ul>
+  <li>Multilingual models (laravel-translatable package)</li>
+  <li>Database seeding with laravel factory models</li>
+  <li>Request validation with laravel form requests</li>
+  <li>Fetching results with laravel api resurces</li>
+</ul>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p>Example query:
+http://localhost:8888/api/query?lang=en&category=!null&per_page=10&page=2&with=category,tags,ingredients</p>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Example response:
+<pre>
+{
+"data": [
+{
+"id": 16,
+"category_id": 7,
+"status": "created",
+"title": "Title for meal-6 on en language",
+"description": "Description for meal-6 on en language",
+"ingredients": [
+{
+"id": 20,
+"slug": "INGREDIENT-10",
+"title": "Title for ingredient-10 on en language"
+}
+],
+"category": {
+"id": 7,
+"slug": "CATEGORY-2",
+"title": "Title for category-2 on en language"
+},
+"tags": [
+{
+"id": 6,
+"slug": "TAG-1",
+"title": "Title for tag-1 on en language"
+},
+{
+"id": 8,
+"slug": "TAG-3",
+"title": "Title for tag-3 on en language"
+},
+{
+"id": 10,
+"slug": "TAG-5",
+"title": "Title for tag-5 on en language"
+}
+]
+},
+{
+"id": 19,
+"category_id": 8,
+"status": "created",
+"title": "Title for meal-9 on en language",
+"description": "Description for meal-9 on en language",
+"ingredients": [
+{
+"id": 17,
+"slug": "INGREDIENT-7",
+"title": "Title for ingredient-7 on en language"
+},
+{
+"id": 19,
+"slug": "INGREDIENT-9",
+"title": "Title for ingredient-9 on en language"
+},
+{
+"id": 20,
+"slug": "INGREDIENT-10",
+"title": "Title for ingredient-10 on en language"
+}
+],
+"category": {
+"id": 8,
+"slug": "CATEGORY-3",
+"title": "Title for category-3 on en language"
+},
+"tags": [
+{
+"id": 10,
+"slug": "TAG-5",
+"title": "Title for tag-5 on en language"
+}
+]
+},
+{
+"id": 20,
+"category_id": 4,
+"status": "created",
+"title": "Title for meal-10 on en language",
+"description": "Description for meal-10 on en language",
+"ingredients": [
+{
+"id": 17,
+"slug": "INGREDIENT-7",
+"title": "Title for ingredient-7 on en language"
+}
+],
+"category": {
+"id": 4,
+"slug": "CATEGORY-4",
+"title": "Title for category-4 on en language"
+},
+"tags": [
+{
+"id": 7,
+"slug": "TAG-2",
+"title": "Title for tag-2 on en language"
+},
+{
+"id": 8,
+"slug": "TAG-3",
+"title": "Title for tag-3 on en language"
+}
+]
+}
+],
+"links": {
+"first": "http://localhost:8888/api/query?page=1",
+"last": "http://localhost:8888/api/query?page=2",
+"prev": "http://localhost:8888/api/query?page=1",
+"next": null
+},
+"meta": {
+"current_page": 2,
+"from": 11,
+"last_page": 2,
+"path": "http://localhost:8888/api/query",
+"per_page": "10",
+"to": 13,
+"total": 13
+}
+}
+</pre>
