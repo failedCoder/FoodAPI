@@ -38,8 +38,8 @@ This api is for fetching meals from a database with url queries.
   <li>Fetching results with laravel api resurces</li>
 </ul>
 
-<p>Example query:
-http://localhost:8888/api/query?lang=en&category=!null&per_page=10&page=2&with=category,tags,ingredients</p>
+Example query:
+<p>http://localhost:8888/api/query?lang=en&category=!null&per_page=10&page=2&with=category,tags,ingredients</p>
 
 Example response:
 <pre>
