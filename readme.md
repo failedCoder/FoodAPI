@@ -4,10 +4,10 @@ This api is for fetching meals from a database with url queries.
 
 ## List of accepted parameters
 <ul>
-  <li><strong>lang</strong>(required):models are multilingual so this param is required to fetch specific translations</li>
-  <li><strong>per_page</strong>(optional):paginates the response</li>
-  <li><strong>page</strong>(optional):selects the page of paginated response</li>
-  <li><strong>category</strong>(optional):filters meal based on their category,options are:
+  <li><strong>lang</strong> (required):models are multilingual so this param is required to fetch specific translations</li>
+  <li><strong>per_page</strong> (optional):paginates the response</li>
+  <li><strong>page</strong> (optional):selects the page of paginated response</li>
+  <li><strong>category</strong> (optional):filters meal based on their category,options are:
     <ul>
     <li>null->returns all meals that don't have a defined category</li>
     <li>!null->returns all meals that have a defined category</li>
