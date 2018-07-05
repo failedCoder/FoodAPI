@@ -45,7 +45,7 @@ class Meal extends Model
             $diffDate = new \DateTime();
             $diffDate->setTimestamp(request('diff_time'));
 
-            if ($this->updated_at > $diffDate) {
+            if ($this->updated_at > $diffDate && $this->updated_at> $this->created_at) {
                 $status = 'modified';
             }
             if ($this->deleted_at > $diffDate) {
