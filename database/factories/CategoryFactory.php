@@ -16,6 +16,5 @@ $factory->define(App\Category::class, function (Faker $faker) {
 	 }
 	 $counter++;
 	
-	
     return $data;
 });
